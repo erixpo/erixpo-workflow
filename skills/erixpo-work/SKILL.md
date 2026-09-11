@@ -11,7 +11,7 @@ metadata:
 
 Not every `/erixpo` is "build an app". This track is for work **in this folder** that is still real work: research, writing, automation, ops, assistant tasks, personal systems.
 
-For recurring work, specialize to **this folder**. Read `.erixpo/PROFILE.md`, `.erixpo/MEMORY.md`, `.erixpo/USER.md`, `AGENTS.md`, and `documents/` first. Read [ceremony.md](../erixpo/references/ceremony.md) and [domains.md](../erixpo/references/domains.md).
+For recurring work, specialize to **this folder**. Read governing files and only relevant sections of `.erixpo/PROFILE.md`, `.erixpo/MEMORY.md`, `.erixpo/USER.md`, `AGENTS.md`, and `documents/`; do not load every memory file for a one-shot or iteration. Read [ceremony.md](../erixpo/references/ceremony.md) and [domains.md](../erixpo/references/domains.md) when relevant.
 
 ## Ceremony
 
@@ -35,16 +35,16 @@ If they need a script in a notes repo, scaffold a tiny Python/shell harness ([sc
 
 ## Loop
 
-1. **Orient.** What is this folder for (PROFILE)? What does this human prefer (USER)? What is already true (MEMORY, wiki)?
+1. **Orient.** What is this folder for (PROFILE), what does this human prefer (USER), and what relevant facts already exist (MEMORY, wiki)?
 2. **Infer first.** Follow [intent.md](../erixpo/references/intent.md). Establish the artifact and observable acceptance. Use [research.md](../erixpo/references/research.md) only for unresolved or stale evidence. A one-shot summary can proceed from provided material without initializing persistent project memory.
 3. **Plan short.** For a one-shot light artifact, the request is the plan: deliver and verify it without creating plan/state/stack/PROFILE files or a learning log. The following persistent-file steps apply only to initialized or recurring work. Write `.erixpo/plan.md` with slices (goal, slices, check). Each slice has a check. For non-code jobs the check may be:
    - a script that exits 0
    - "file exists at path P and contains X"
    - "user accepted the draft"
    Write that check as `check:` in `.erixpo/stack.md` so `.erixpo/bin/erixpo` can run it when it is a command. Record `ceremony: light` (unless PROFILE already upgraded) in `.erixpo/state.md`, not `state.yaml`.
-4. **Do one slice.** Update the wiki if the folder's knowledge changed, as ceremony requires ([wiki.md](../erixpo/references/wiki.md)).
+4. **Do one slice.** Update the wiki if the folder's knowledge changed, as ceremony requires ([wiki.md](../erixpo/references/wiki.md)); one-shot evidence may remain in the response.
 5. **Verify.** Superpowers iron law: no completion claim without fresh evidence. Run the check or show the artifact.
-6. **Learn.** If the procedure or preference is reusable, follow `erixpo-learn` (one JSONL line, not a novel).
+6. **Learn.** After the whole job, or after an explicit correction or verified repeated pitfall, run one `erixpo-learn` pass (one JSONL line, not a novel). An outer-loop iteration is not a finished job.
 
 ## Job classes (write into PROFILE if missing)
 

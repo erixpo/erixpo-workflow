@@ -11,7 +11,7 @@ metadata:
 
 This is the build phase. No more product interview unless a slice is blocked on a decision.
 
-Interactive `/erixpo auto` and unattended `.erixpo/bin/erixpo run` use the **same** quality bar. The worker prompt is `templates/PROMPT.md` — specialist, not factory ([craft.md](../erixpo/references/craft.md)). USER.md taste and autonomy win. Tests still run. Do not narrate the workflow in chat.
+Interactive `/erixpo auto` and unattended `.erixpo/bin/erixpo run` use the **same** quality bar. The detailed worker contract is [PROMPT.md](../../templates/PROMPT.md), installed at `.erixpo/pack-templates/PROMPT.md`; it is specialist, not factory ([craft.md](../erixpo/references/craft.md)). USER.md taste and autonomy win. Tests still run. Do not narrate the workflow in chat.
 
 ## Preconditions
 
@@ -22,25 +22,20 @@ Interactive `/erixpo auto` and unattended `.erixpo/bin/erixpo run` use the **sam
 - Search `.erixpo/sessions.jsonl` for this module before coding.
 - `.erixpo/classify.md` exists with `request_class` and `jobs:`. If missing, run `.erixpo/bin/erixpo classify <sentence>` and write the file **before** product code.
 - If `USER.md` still has empty autonomy / test / review lines, write defaults: `plan-then-go`, `harness-required`, `always-stage-2`. Do not skip tests because USER was blank.
-- Run `.erixpo/bin/erixpo capabilities` and paste into classify `capabilities:` if that field is empty.
+- Run `.erixpo/bin/erixpo capabilities` and paste into classify `capabilities:` only when a concrete capability gap exists and that field is empty.
 
 ## Loop
 
-Read [memory.md](../erixpo/references/memory.md) inject order, then USER.md, and obey it.
+Follow [PROMPT.md](../../templates/PROMPT.md) for worker policy and [memory.md](../erixpo/references/memory.md) for targeted retrieval. Read only relevant governing files and references for the current slice; the active loop already supplies the current slice context.
 
 Until every approved slice is complete and fresh checks pass, or a budget/failure stop is reached:
 
-0. Read `AGENTS.md`, `.erixpo/PROFILE.md`, `.erixpo/USER.md`, `.erixpo/MEMORY.md`, `.erixpo/lessons.md`, `CONSTITUTION.md` if present, `classify.md` if present, `documents/ui/` if a surface exists. Follow memory.md: search effective active lessons for the files/job and inspect relevant approved project procedures; do not apply superseded raw grep hits. If a learning applies: `Prior learning applied: <key>`. Then read testing.md, quality.md; ui.md if a surface; ceremony.md / slop.md / scaffold.md if present.
-1. Read the plan, `documents/` as ceremony requires, git status. Search sessions.
-2. If check already passes AND **all approved slices** are done (plan status): stop (interactive: delivery note below; unattended: print `ERIXPO_DONE` and exit).
-3. Do the next incomplete slice. Greenfield scaffold comes first. Use [research.md](../erixpo/references/research.md) to resolve evidence gaps; reuse verified version-matched findings. Do not re-research a known decision on every iteration. Follow [intent.md](../erixpo/references/intent.md) for autonomy.
-4. Missing test harness → create it this slice. Do not ask permission to have tests. Follow [testing.md](../erixpo/references/testing.md). `harness-required` in USER.md is the default bar; `best-effort` still writes tests when a runner exists.
-5. Write/update tests for this slice. Run `check:` from `.erixpo/stack.md`. Read the output. No success claim without that evidence. Check must run tests, not only typecheck, unless constitution says otherwise.
-6. If a surface: follow `documents/ui/` and `ui_change` in classify.md (relanguage / retoken / recompose / reflow / remotion). Missing spec → `erixpo-ui` first. No freelance hex. No HTML-as-iOS. No tutorial slop. Visual-first / mockups fields in USER.md specialize when to mock; they do not license skipping the spec.
-7. Self-review the diff ([quality.md](../erixpo/references/quality.md)). No optional extras. Empty / error / loading when cheap. Then wiki per ceremony + `.erixpo/progress.md` (not a forced `progress.html` / `ARCHITECTURE.md` on light ceremony).
-8. If check fails: fix only that failure. Same class of mistake twice → append a learning. Three times → stop, `erixpo-learn`, do not burn the budget. Read [failures.md](../erixpo/references/failures.md).
-9. Update this slice to `- Status: done` only after verification, preserving approved slice titles/check commands. Small plans can use `- [x] acceptance` entries. A green check with remaining todo slices means continue. Commit real progress on THIS branch only. Never merge onto the user's main. Never close or prune a worktree from the worker.
-10. Interactive + `ask-every-slice`: stop and show. Interactive + `plan-then-go` or `unattended`: next slice. Unattended CLI worker: **exit** — the outer loop restarts you.
+0. Read the plan, `documents/` as ceremony requires, git status, and only relevant memory/procedure sections. Search sessions when the current job needs prior context.
+1. If check already passes AND **all approved slices** are done (plan status): stop (interactive: delivery note below; unattended: print `ERIXPO_DONE` and exit).
+2. Have the worker follow PROMPT.md for exactly the next incomplete slice, fresh tests/checks, research, UI, self-review, docs, and learning timing. Preserve skip/narrow/full research semantics and read references only when relevant.
+3. After the worker exits, require the approved slice identities and check commands to be unchanged; do not accept deleted, newly invented, or newly skipped slices. Run the fresh project check and approved completed-slice checks.
+4. A worker or check failure is not success: repair only that failure, preserve logs/evidence, and stop after the existing failure/no-progress limits. Do not append sessions or learnings merely because an iteration ends.
+5. Mark the current slice done only after fresh verification, preserving its approved title/check and avoiding optional extras. Continue according to USER autonomy; an unattended worker exits so the outer loop can restart it.
 
 No completion claim without fresh test/check output in this iteration.
 
@@ -73,7 +68,7 @@ If `.erixpo/bin/erixpo` is on PATH in this project, you may run:
 .erixpo/bin/erixpo run --max 20
 ```
 
-That is the same loop driven from outside the chat. Prefer it when they walk away or USER.md autonomy is `unattended`. The worker prompt is `templates/PROMPT.md` — it must match this skill.
+That is the same loop driven from outside the chat. Prefer it when they walk away or USER.md autonomy is `unattended`. The worker prompt is `templates/PROMPT.md` in the source pack and `.erixpo/pack-templates/PROMPT.md` after install; both must match this skill's contract.
 
 ## Runtime contract
 

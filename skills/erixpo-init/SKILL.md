@@ -21,18 +21,11 @@ Read [domains.md](../erixpo/references/domains.md), [ceremony.md](../erixpo/refe
 
 3. **Say what you understood** in chat, short. If domain, surface, or audience is ambiguous, one question.
 
-4. **USER.md.** If USER is empty, ask **2–3** working-style questions (not 20): (1) autonomy — ask / plan-then-go / unattended; (2) platforms they actually use; (3) visual-first vs code-first, **or** test strictness (pick the one that matches this folder). Fill the USER template; do not rewrite its shape (that template is owned elsewhere). If they say "you pick" / unattended / just go, write defaults: `plan-then-go`, `harness-required`, `always-stage-2`. Empty USER is not allowed after init.
+4. **USER.md when needed.** For full/standard work, if USER is empty, ask **2–3** working-style questions (not 20): (1) autonomy — ask / plan-then-go / unattended; (2) platforms they actually use; (3) visual-first vs code-first, **or** test strictness (pick the one that matches this folder). Fill the USER template; do not rewrite its shape (that template is owned elsewhere). If they say "you pick" / unattended / just go, write defaults: `plan-then-go`, `harness-required`, `always-stage-2`. For recurring light work, create USER only when those preferences affect the workflow.
 
-5. **Create project brain** if missing, from `.erixpo/pack-templates/` or this pack's `templates/`. Copy **only what ceremony requires**. Other templates stay in pack-templates for later promotion.
+5. **Create project brain** if missing, from `.erixpo/pack-templates/` or this pack's `templates/`. Copy **only what ceremony requires**. A one-shot light job does not initialize a persistent brain. For recurring or explicit light init, start with the small baseline needed by the workflow: `AGENTS.md`, `.erixpo/PROFILE.md`, `.erixpo/state.md`, and `.erixpo/stack.md`; add `CLAUDE.md`, `documents/INDEX.md`, inventory, or `CONSTITUTION.md` only when the folder contract or an actual artifact needs them. Create `.erixpo/USER.md`, `MEMORY.md`, `lessons.md`, `learnings.jsonl`, `sessions.jsonl`, or `refine-log.md` only when durable context, a handoff, or learning requires it. Other templates stay in pack-templates for later promotion.
 
-   Always:
-   - `AGENTS.md` — what this folder is for, how to run it, what is forbidden
-   - `CLAUDE.md` containing only `@AGENTS.md`
-   - `documents/INDEX.md` trimmed to files you actually create
-   - `.erixpo/PROFILE.md`, `MEMORY.md`, `USER.md`, `lessons.md`, empty `learnings.jsonl` / `sessions.jsonl`
-   - `.erixpo/state.md` with `phase: initialized` (canonical; do not write job state to `state.yaml`)
-   - `.erixpo/CONSTITUTION.md` — if code exists, describe the real layout; do not invent. If the folder is empty, leave the keyed template for slice 0 of new work ([scaffold.md](../erixpo/references/scaffold.md))
-   - `.erixpo/stack.md` with a `check:` line: a real command, or explicitly `n/a — human accepts artifact` for light writing jobs only. Dummy `echo` / `exit 0` / `true` are fails
+   The baseline `AGENTS.md` says what this folder is for, how to run it, and what is forbidden. `.erixpo/stack.md` has a real `check:` line, or explicitly `n/a — human accepts artifact` for light writing jobs only. Dummy `echo` / `exit 0` / `true` are fails. Full and standard ceremony retain their required artifacts below.
 
    Then seed wiki per [ceremony.md](../erixpo/references/ceremony.md). Visible surface: seed **`documents/ui/LANGUAGE.md` only** (voice + anti-slop). Do not copy blank token/layout tables — that looks like a fake design system. Fill the rest in the first UI slice with real numbers.
 

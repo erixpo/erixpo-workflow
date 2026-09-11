@@ -53,4 +53,4 @@ This folder uses erixpo workflow. Router skill: `/erixpo`.
 
 ## Memory
 
-This repo keeps durable memory in `.erixpo/PROFILE.md`, `.erixpo/MEMORY.md`, `.erixpo/USER.md`, and `.erixpo/learnings.jsonl`. Read them before acting. After a non-trivial job, append a learning if something verified and reusable appeared.
+This repo keeps durable memory in `.erixpo/PROFILE.md`, `.erixpo/MEMORY.md`, `.erixpo/USER.md`, and `.erixpo/learnings.jsonl`. Read governing files first, then only relevant sections and effective lessons/procedures for the job; do not load every memory file for each one-shot or iteration. After the whole job, run one learn pass if a verified reusable fact appeared; also learn after an explicit user correction or verified repeated pitfall. An outer-loop iteration is not a finished job, and immutable `.erixpo/run-events/` are runtime evidence, not job sessions.

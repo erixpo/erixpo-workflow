@@ -8,7 +8,7 @@ Run `.erixpo/bin/erixpo research-scope --class <class> --ui <change>`.
 
 | Intensity | When | Work |
 |---|---|---|
-| full | New product, initial scaffold, large architectural feature, new design language or structural redesign | Official setup and platform guidance, test approach, and 2–3 relevant comparables |
+| full | New product, initial scaffold, large architectural feature, new design language or structural redesign | Official setup and platform guidance, test approach, and 2–3 relevant comparables for relevant areas only |
 | narrow | Feature or artifact with missing evidence; unknown API; new infrastructure; explicit user reference | Resolve the specific uncertainty using official sources; compare alternatives only when a decision needs them |
 | skip | Routine fix/review/recall with sufficient local evidence; a small build with verified cached evidence matching the installed versions | Reuse evidence and proceed |
 
@@ -21,7 +21,7 @@ Explicit user instructions to research or avoid browsing take precedence. A fail
 1. Read the relevant repository facts, lockfiles, constitution, and user constraints.
 2. State the decision or uncertainty being resolved. Reuse `.erixpo/research.md` when it already answers it.
 3. Open official documentation for the actual platform/version. For user-named references, open them and record what was learned. If inaccessible, say so.
-4. Record only useful findings, with URL, access date, dependency/version scope, and one learned fact. On a narrow pass omit empty sections.
+4. Record only useful findings, with URL, access date, dependency/version scope, and one learned fact. Omit empty sections. Discover capabilities only for a concrete gap; otherwise record one short `no additions needed` conclusion.
 5. Pick the official default when suitable. Explain a rejected alternative only when it was a real option. Avoid optional infrastructure or features.
 6. Follow [intent.md](intent.md) for autonomy. Research does not add an approval gate to work the user already authorized.
 
@@ -47,13 +47,13 @@ Before scaffold or implementation, cover each relevant area below. Research is d
 - **Visual artifacts without an interface:** research the actual medium, authoring/rendering/export pipeline and craft criteria, then inspect representative outputs (domains.md). Do not force UI documents onto an animation or 3D asset.
 - **UI when present:** platform interaction guidance and 2–3 relevant comparables; explain hierarchy, primary-action placement, navigation, grouping, density and compact/regular behavior. Carry decisions into `documents/ui/`. Include keyboard/focus, screen-reader labels, contrast, text scaling, reduced motion, and empty/loading/error states. Verify with a rendered browser or native preview and interaction checks; source inspection alone is not visual verification. Follow [ui.md](ui.md) and [slop.md](slop.md); avoid imposing a web aesthetic on native software.
 - **Compliance applicability:** identify distribution/store rules, accessibility requirements, privacy/data collection, permissions, licensing and any domain-specific obligations relevant to the audience and markets. Read current primary sources for applicable areas. Record `applies`, `not applicable` with a reason, or `unknown` with the missing fact, plus implementation/verification consequences. A local offline script must not inherit a SaaS compliance checklist. Research is not a certification of legal compliance.
-- **Capabilities:** perform the skill/MCP discovery below. Record an explicit conclusion even when no addition is useful.
+- **Capabilities:** assess whether a concrete skill/MCP gap exists; perform the discovery below only for that gap, otherwise record `no additions needed` with a reason.
 
 Infer from project facts first. Ask a concise question only when missing information changes a consequential decision (for example platform, target market, sensitive data or distribution). A known surface does not resolve every compliance question. Continue independent research while awaiting the answer; keep dependent choices provisional. If browsing is unavailable, record the uncovered decisions and do not claim full research is complete.
 
 ## Skills and MCP discovery
 
-On every full pass, and on a narrow pass with a capability gap:
+When a concrete capability gap exists on a full pass, or on a narrow pass:
 
 1. Inventory the host's installed skills and callable tools. Map missing capabilities to the actual work: native preview, accessibility testing, database migrations, deployment, research, or another concrete need. Reuse suitable installed capabilities first.
 2. Search [skills.sh](https://skills.sh/) for the missing expertise using platform/task-specific terms. The open [skills CLI](https://github.com/vercel-labs/skills) also supports `npx skills find <query>`. Read the candidate's actual `SKILL.md`, referenced scripts, upstream owner, license, freshness and host compatibility before recommending it. Installation counts help discovery; they do not prove quality or safety. Do not install a generic frontend bundle into every project.

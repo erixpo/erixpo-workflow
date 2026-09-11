@@ -20,6 +20,8 @@ documents/progress.html   full, or if the file already exists
 
 Create **only** the files [ceremony.md](ceremony.md) requires. Never blow away a good existing README; merge. Do not copy twenty empty wiki pages. Do not create empty `ARCHITECTURE.md` for light jobs.
 
+For one-shot light work, the response may contain the evidence; do not create a wiki page or progress file just to avoid an empty artifact. Persistent pages need durable content or a ceremony requirement.
+
 `documents/` is the Wikipedia of **this folder**. Write in its language and facts. No generic "Welcome to your new app" copy.
 
 ## Every behaviour-changing slice

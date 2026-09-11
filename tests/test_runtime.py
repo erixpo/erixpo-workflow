@@ -10,6 +10,9 @@ import unittest
 
 PACK = Path(__file__).resolve().parents[1]
 CLI = PACK / "bin/erixpo"
+RUNTIME_SPEC = importlib.util.spec_from_file_location("erixpo_runtime", PACK / "scripts/erixpo-runtime.py")
+RUNTIME = importlib.util.module_from_spec(RUNTIME_SPEC)
+RUNTIME_SPEC.loader.exec_module(RUNTIME)
 
 
 class RuntimeTests(unittest.TestCase):
@@ -35,6 +38,92 @@ class RuntimeTests(unittest.TestCase):
 
     def state(self):
         return (self.root / ".erixpo/state.md").read_text()
+
+    def render_prompt(self, run_id="run-test"):
+        RUNTIME.prompt(self.root.resolve(), self.plan.resolve(), 1, "generic", {}, run_id)
+        return (self.root / ".erixpo/loop-prompt.md").read_text()
+
+    def test_prompt_contains_only_current_slice_body(self):
+        self.plan.write_text(
+            "status: approved\n"
+            "## Non-goals\n"
+            "- SHARED-NON-GOAL\n"
+            "## UI\n"
+            "- SHARED-UI-CONSTRAINT\n"
+            "## Slices\n"
+            "### Current slice\n"
+            "- Acceptance: CURRENT-ACCEPTANCE\n"
+            "- Edges: CURRENT-EDGES\n"
+            "- Check: test -f current\n"
+            "- Status: todo\n"
+            "### Unrelated slice\n"
+            "- Acceptance: UNRELATED-ACCEPTANCE\n"
+            "- Edges: UNRELATED-EDGES\n"
+            "- Check: test -f unrelated\n"
+            "- Status: todo\n"
+        )
+        (self.root / ".erixpo/classify.md").write_text("CLASSIFY-SENTINEL")
+        (self.root / ".erixpo/USER.md").write_text("USER-SENTINEL")
+        (self.root / ".erixpo/lessons.md").write_text("LESSONS-SENTINEL")
+        prompt = self.render_prompt()
+        for sentinel in ("SHARED-NON-GOAL", "SHARED-UI-CONSTRAINT", "CURRENT-ACCEPTANCE", "CURRENT-EDGES", "test -f current", "Status: todo"):
+            self.assertIn(sentinel, prompt)
+        for sentinel in ("UNRELATED-ACCEPTANCE", "UNRELATED-EDGES", "test -f unrelated", "CLASSIFY-SENTINEL", "USER-SENTINEL", "LESSONS-SENTINEL"):
+            self.assertNotIn(sentinel, prompt)
+
+    def test_prompt_checkbox_plan_keeps_complete_list(self):
+        self.plan.write_text(
+            "status: approved\n"
+            "- [ ] First checkbox acceptance\n"
+            "  Edge: first checkbox edge\n"
+            "- [x] Second checkbox acceptance\n"
+        )
+        prompt = self.render_prompt()
+        for sentinel in ("First checkbox acceptance", "first checkbox edge", "Second checkbox acceptance"):
+            self.assertIn(sentinel, prompt)
+
+    def test_prompt_checkbox_plan_with_heading_keeps_checkbox_context(self):
+        self.plan.write_text(
+            "status: approved\n"
+            "## Notes\n"
+            "### Context only\n"
+            "- [ ] First checkbox acceptance\n"
+        )
+        prompt = self.render_prompt()
+        self.assertIn("First checkbox acceptance", prompt)
+        self.assertNotIn("No incomplete slice remains", prompt)
+
+    def test_prompt_reports_failed_verification_for_all_done_plan(self):
+        self.plan.write_text(
+            "status: complete\n"
+            "### Finished slice\n"
+            "- Acceptance: finished\n"
+            "- Check: test -f result\n"
+            "- Status: done\n"
+        )
+        log = self.root / ".erixpo/failed-check.log"
+        (self.root / ".erixpo/verification.json").write_text(json.dumps({
+            "run_id": "run-test",
+            "plan": str(self.plan),
+            "checks": [{"command": "python3 verify.py", "exit_code": 7, "log": str(log)}]
+        }))
+        prompt = self.render_prompt()
+        self.assertIn("Repair previous verification", prompt)
+        self.assertIn("python3 verify.py", prompt)
+        self.assertIn("exit 7", prompt)
+        self.assertIn(str(log), prompt)
+        self.assertIn("do not declare completion", prompt)
+        self.assertNotIn("plan complete", prompt.lower())
+
+    def test_prompt_ignores_stale_verification_receipts(self):
+        other_plan = self.root / ".erixpo/other-plan.md"
+        for receipt in (
+            {"run_id": "old-run", "plan": str(self.plan)},
+            {"run_id": "run-test", "plan": str(other_plan)},
+        ):
+            receipt["checks"] = [{"command": "stale-check", "exit_code": 9, "log": "stale.log"}]
+            (self.root / ".erixpo/verification.json").write_text(json.dumps(receipt))
+            self.assertNotIn("stale-check", self.render_prompt())
 
     def test_root_and_subcommand_flags(self):
         self.assertEqual(self.call("check").returncode, 0)

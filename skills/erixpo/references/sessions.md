@@ -29,7 +29,7 @@ Never: tokens, passwords, contents of `.env`.
 
 ## When to write
 
-- End of a slice (auto / feature / fix / work)
+- End of a finished or abandoned job; an auto loop writes this once after the loop, not once per outer-loop iteration
 - Review finished (track: `review`, notes: verdict)
 - Loop stopped on budget or repeated failure
 - User aborted

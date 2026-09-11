@@ -25,7 +25,7 @@ If the folder has **no project** (empty or nearly empty): the plan's **slice 0 i
 
 ## Phase B — Research
 
-Follow [research.md](../erixpo/references/research.md) (**full** for new). Open current official sources for the actual versions: official init, platform guide, **comparables** (2–3 similar products for this surface, plus any `like X`), test runner. Complete the full-pass coverage in that protocol: domain-specific craft/engineering, UI layout/accessibility when an interface is present, compliance applicability, and skills.sh/MCP capability discovery. Write the evidence and decisions in `.erixpo/research.md`, including concrete project-local installation proposals when useful; obtain authorization before adding third-party capabilities.
+Follow [research.md](../erixpo/references/research.md) (**full** for new). Open current official sources for the actual versions: official init, platform guide, **comparables** (2–3 similar products for this surface, plus any `like X`), test runner. Complete the full-pass coverage in that protocol for relevant areas only: domain-specific craft/engineering, UI layout/accessibility when an interface is present, and applicable compliance. Discover skills/MCP capabilities only when a concrete gap exists; otherwise record one short `no additions needed`. Omit empty research sections. Write the evidence and decisions in `.erixpo/research.md`, including concrete project-local installation proposals when useful; obtain authorization before adding third-party capabilities.
 
 Do not use memorized defaults. Novelty is optional. The reframe is not.
 

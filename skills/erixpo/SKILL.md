@@ -17,8 +17,8 @@ Write `.erixpo/classify.md` except for its explicit one-shot/maintenance excepti
 
 ## First 30 seconds
 
-1. Read what is already here: source, `AGENTS.md`, PROFILE / USER / MEMORY / CONSTITUTION if they exist.
-2. Classify (`.erixpo/bin/erixpo classify`, capabilities, research-scope). Infer ([intent.md](references/intent.md)). One line to the human of what you understood.
+1. Read what is already here: source, `AGENTS.md`, and relevant sections of PROFILE / USER / MEMORY / CONSTITUTION if they exist.
+2. Classify (`.erixpo/bin/erixpo classify`, `research-scope`; run `capabilities` only for a concrete gap). Infer ([intent.md](references/intent.md)). One line to the human of what you understood.
 3. Load **one** track skill and do that job. Do not dump a file list. Do not jump to a web stack.
 4. Other agent than the ones in `.erixpo/hosts.txt` (saved hosts, written by `install.sh`): ask once to expand install.
 5. Remaining `jobs:` stay on disk. After the check, continue the queue.
@@ -52,7 +52,7 @@ Infer first ([intent.md](references/intent.md)). Ask at most one question if sur
 
 ### 2. Research
 
-Only if `research-scope` is narrow or full ([research.md](references/research.md)). Open current official sources for the actual versions: official docs, comparables, practices. Cite URLs. For full research, explicitly assess compliance and discover useful skills/MCP capabilities, starting with installed tools and skills.sh. Follow the research protocol for concrete project-local proposals and installation authorization.
+Only if `research-scope` is narrow or full ([research.md](references/research.md)). Open current official sources for the actual versions: official docs, comparables, practices. Cite URLs. For full research, explicitly assess compliance and any capability gap; perform skills/MCP discovery only for a concrete gap, starting with installed tools and skills.sh when needed. Follow the research protocol for concrete project-local proposals and installation authorization.
 
 ### 3. Choose
 

@@ -38,21 +38,18 @@ For projects outside the example rows, apply domains.md: choose ceremony by comp
 
 ## Artifacts
 
-For a one-shot light artifact, use the current request as the plan and deliver the artifact with its evidence; do not require init, a constitution, USER interview, or persistent files. Create persistent context when the user asks to initialize the folder, work recurs, or a handoff requires it. The always list below applies to explicit initialization and recurring work.
+For a one-shot light artifact, use the current request as the plan and deliver the artifact with its evidence; do not require init, a constitution, USER interview, or persistent files. One-shot evidence may remain in the response. Create persistent context when the user asks to initialize the folder, work recurs, or a handoff requires it. Explicit or recurring light init starts with only the small baseline needed by the workflow; durable memory and learning files are added only when their content or a handoff requires them.
 
 Init copies **only** these from pack-templates. Everything else stays in `.erixpo/pack-templates/` until ceremony upgrades. Rewrite `documents/INDEX.md` so it links only files that exist.
 
-### Always (every ceremony, including light)
+### Baseline for initialized or recurring work
 
-- `AGENTS.md`, `CLAUDE.md` (`@AGENTS.md`)
-- `documents/INDEX.md` (short for light)
-- `documents/inventory.md` — from the map, evidence only; omit on a truly empty greenfield if there is nothing to quote
-- `.erixpo/PROFILE.md`, `MEMORY.md`, `USER.md`, `lessons.md`, `learnings.jsonl`, `sessions.jsonl`
+- `AGENTS.md`
+- `.erixpo/PROFILE.md`
 - `.erixpo/state.md` (canonical; not `state.yaml`)
-- `.erixpo/CONSTITUTION.md` (keyed; fill in init if code exists, else slice 0)
 - `.erixpo/stack.md` with a real `check:` — or `n/a — human accepts artifact` for **light writing only**
 
-MEMORY / USER are required even for light.
+Add `CLAUDE.md`, `documents/INDEX.md`, and evidence-based `documents/inventory.md` when the folder contract or actual artifact needs them. Add `.erixpo/USER.md`, `MEMORY.md`, `lessons.md`, `learnings.jsonl`, `sessions.jsonl`, and `refine-log.md` only when durable preferences/facts, loop notes, learning, or handoff history actually exists. Add `.erixpo/CONSTITUTION.md` when code/layout or a project contract needs it. Full and standard ceremony retain their listed project and verification artifacts.
 
 ### full
 
@@ -90,7 +87,7 @@ Automation, writing, research, ops, assistant, one-shot notes.
 
 ## Wiki during a slice
 
-Every behaviour-changing slice updates wiki **as this file requires**. See [wiki.md](wiki.md).
+Every behaviour-changing slice updates wiki **as this file requires**. One-shot light evidence can stay in the response; do not create an empty page for it. See [wiki.md](wiki.md).
 
 - `progress.html` only if ceremony is full **or** the file already exists.
 - Do not invent architecture the code does not have.

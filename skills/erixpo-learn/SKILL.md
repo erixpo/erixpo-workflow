@@ -27,13 +27,15 @@ Read [memory rules](../erixpo/references/memory.md) first.
 
 The installed pack skills are **immutable** in a target project. Memory and draft procedures belong in `.erixpo/`; deliberate promotion of a verified shared rule may also update the project's AGENTS.md or documents, as described below. Never rewrite the installed methodology to fit one session.
 
+`.erixpo/sessions.jsonl` records job-level sessions. `.erixpo/run-events/*.json` are immutable runtime run-events and remain evidence, not a substitute for a job session or a reason to learn at every iteration.
+
 ## Modes
 
 | User said | Mode |
 |---|---|
 | remember this / don't forget / we always… | **capture** |
 | what did we learn / search memory / prior learning | **search** |
-| refine / extract learnings / after a green slice | **refine** |
+| refine / extract learnings / after a finished job | **refine** |
 | turn this into a skill / skillify / /learn this folder | **promote** |
 | prune / forget that / that learning is wrong | **prune** |
 | empty or just `/erixpo learn` | **review** (show top learnings + offer prune/promote) |
@@ -66,7 +68,7 @@ Log the edit in `.erixpo/refine-log.md`: trigger, file, before→after one-liner
 
 ## Refine (after a finished job)
 
-Do this at the end of auto / feature / fix / work / review when something non-trivial happened.
+Do this at the end of the whole auto job (not each outer-loop iteration), or after feature / fix / work / review when something non-trivial happened.
 
 1. Append one `sessions.jsonl` line: date, track, goal, check result, lesson keys.
 2. If a new pitfall or pattern was **verified** (check ran, or user confirmed), append one learning.
